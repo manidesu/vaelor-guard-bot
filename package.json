@@ -1,0 +1,13 @@
+{
+  "name": "inziva-guard-bot",
+  "version": "1.0.0",
+  "description": "Anti-nuke, anti-raid, anti-spam ve yetkisiz bot ekleme korumasi saglayan guvenlik botu",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "dependencies": {
+    "discord.js": "^14.15.3",
+    "dotenv": "^16.4.5"
+  }
+}
