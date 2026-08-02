@@ -59,6 +59,7 @@ client.once('ready', () => {
         guildId: channel.guild.id,
         adapterCreator: channel.guild.voiceAdapterCreator,
         selfDeaf: true,
+        selfMute: true,
       });
       console.log(`[GUARD] Ses kanalına katılındı: ${channel.name} (${channel.id})`);
     } else {
