@@ -60,7 +60,7 @@ module.exports = {
   antiBotAdd: {
     enabled: true,
     // Sunucuda bulunmasına izin verilen bot ID'leri (kendi botların dahil).
-    allowedBotIds: [
+    allowedBotIds: ["1532827843950678218", "1532883380633469030", "1532866560492830801", "1533305585661907004",
       // 'BURAYA_BOT_IDSI',
     ],
   },
