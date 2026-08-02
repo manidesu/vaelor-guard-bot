@@ -60,9 +60,19 @@ module.exports = {
   antiBotAdd: {
     enabled: true,
     // Sunucuda bulunmasına izin verilen bot ID'leri (kendi botların dahil).
-    allowedBotIds: ["1532827843950678218", "1532883380633469030", "1532866560492830801", "1533305585661907004",
-      // 'BURAYA_BOT_IDSI',
+    allowedBotIds: [
+      '1532827843950678218',
+      '1532883380633469030',
+      '1532866560492830801',
+      '1533305585661907004',
     ],
+  },
+
+  // ---------- SES KANALINA OTOMATİK KATILMA ----------
+  voice: {
+    enabled: true,
+    channelId: '1532920131376775208',
+    activityName: 'Blessed by Mani',
   },
 
   // ---------- YETKİ KÖTÜYE KULLANIMI (DİĞER BOTLARDAKİ CEZA KOMUTLARININ İSTİSMARI) ----------

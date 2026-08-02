@@ -1,4 +1,5 @@
-const { Client, GatewayIntentBits, Partials } = require('discord.js');
+const { Client, GatewayIntentBits, Partials, ActivityType } = require('discord.js');
+const { joinVoiceChannel } = require('@discordjs/voice');
 const config = require('./config');
 
 const antiNuke = require('./modules/antiNuke');
@@ -15,6 +16,7 @@ const client = new Client({
     GatewayIntentBits.GuildMessages,
     GatewayIntentBits.MessageContent, // Privileged - Developer Portal'dan aç (.ihlal komutu için gerekli)
     GatewayIntentBits.GuildModeration, // guildBanAdd olayını yakalamak için
+    GatewayIntentBits.GuildVoiceStates, // ses kanalına katılmak için gerekli
   ],
   partials: [Partials.GuildMember, Partials.Message, Partials.Channel],
 });
@@ -44,6 +46,25 @@ client.on('messageCreate', async (message) => {
 
 client.once('ready', () => {
   console.log(`${client.user.tag} olarak giriş yapıldı. (Guard Bot aktif)`);
+
+  // Durum: "Oynuyor: Blessed by Mani"
+  client.user.setActivity(config.voice.activityName, { type: ActivityType.Playing });
+
+  // Belirtilen ses kanalına otomatik katıl
+  if (config.voice.enabled && config.voice.channelId) {
+    const channel = client.channels.cache.get(config.voice.channelId);
+    if (channel) {
+      joinVoiceChannel({
+        channelId: channel.id,
+        guildId: channel.guild.id,
+        adapterCreator: channel.guild.voiceAdapterCreator,
+        selfDeaf: true,
+      });
+      console.log(`[GUARD] Ses kanalına katılındı: ${channel.name} (${channel.id})`);
+    } else {
+      console.error(`[GUARD] Ses kanalı bulunamadı: ${config.voice.channelId}`);
+    }
+  }
 });
 
 client.login(config.token);
